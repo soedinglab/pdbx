@@ -5,7 +5,9 @@ set(PACKAGE_VERSION 1.0)
 
 find_program(PYTHON "python3")
 
-option(UserInstallOption "UserInstallOption" OFF)
+if(NOT DEFINED UserInstallOption)
+    option(UserInstallOption "UserInstallOption" OFF)
+endif()
 
 if (PYTHON)
     set(SETUP_PY_IN "${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in")
@@ -22,7 +24,7 @@ if (PYTHON)
 
     add_custom_target(target ALL DEPENDS ${OUTPUT})
 
-    if (UserInstallOption EQUAL "ON")
+    if (UserInstallOption STREQUAL "ON")
         install(CODE "execute_process(COMMAND ${PYTHON} ${SETUP_PY} install --user)")
     else()
         install(CODE "execute_process(COMMAND ${PYTHON} ${SETUP_PY} install)")
