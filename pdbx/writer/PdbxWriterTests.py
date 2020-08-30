@@ -109,7 +109,7 @@ class PdbxWriterTests(unittest.TestCase):
             myBlock.printIt()
             myCat=myBlock.getObj('pdbx_seqtool_mapping_ref')
             myCat.printIt()
-            for iRow in xrange(0,myCat.getRowCount()):
+            for iRow in range(0,myCat.getRowCount()):
                 myCat.setValue('some value', 'ref_mon_id',iRow)
                 myCat.setValue(100, 'ref_mon_num',iRow)
             ofh = open("test-output-2.cif", "w")            

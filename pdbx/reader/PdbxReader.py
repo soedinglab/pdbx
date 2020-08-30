@@ -355,7 +355,10 @@ class PdbxReader(object):
 
         ## Tokenizer loop begins here ---
         while True:
-            line = next(fileIter)
+            try:
+                line = next(fileIter)
+            except StopIteration:
+                break
             self.__curLineNumber += 1
 
             # Dump comments
